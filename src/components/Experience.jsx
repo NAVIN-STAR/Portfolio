@@ -39,7 +39,7 @@ const Experience = () => {
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className="bg-[#2A2A2B] rounded-lg p-6 md:p-8 shadow-sm border border-gray-700 hover:shadow-lg hover:border-accent-light/30 transition-all"
+              className="bg-[#2A2A2B] rounded-lg p-6 md:p-8 shadow-sm border border-gray-700 hover:shadow-lg hover:border-accent-light/30 hover:-translate-y-1 transition-all duration-300"
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                 <div>

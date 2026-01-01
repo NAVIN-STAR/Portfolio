@@ -23,7 +23,7 @@ const About = () => {
         </div>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-6 bg-[#2A2A2B] rounded-lg border border-gray-700">
+          <div className="p-6 bg-[#2A2A2B] rounded-lg border border-gray-700 hover:border-accent-light/40 hover:-translate-y-1 transition-all duration-300">
             <h3 className="font-semibold text-white mb-2">Education</h3>
             <p className="text-gray-300">
               <span className="font-medium">Bachelor of Engineering</span><br />
@@ -32,7 +32,7 @@ const About = () => {
               <span className="text-sm text-gray-400">Aug 2020 – Aug 2024 | CGPA: 9.2/10</span>
             </p>
           </div>
-          <div className="p-6 bg-[#2A2A2B] rounded-lg border border-gray-700">
+          <div className="p-6 bg-[#2A2A2B] rounded-lg border border-gray-700 hover:border-accent-light/40 hover:-translate-y-1 transition-all duration-300">
             <h3 className="font-semibold text-white mb-2">Location</h3>
             <p className="text-gray-300">
               Bangalore, India<br />

@@ -70,7 +70,7 @@ const Achievements = () => {
           ))}
         </div>
 
-        <div className="bg-[#2A2A2B] hover:border-accent-light/40 hover:-translate-y-1 rounded-lg p-8 border border-gray-700 shadow-lg">
+        <div className="bg-[#2A2A2B] hover:border-accent-light/40 hover:-translate-y-1 rounded-lg p-8 border border-gray-700 shadow-lg transistion-all duration-300">
           <h3 className="text-2xl font-bold text-white mb-6 text-center">Key Impact Metrics</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {impactMetrics.map((metric, index) => (
