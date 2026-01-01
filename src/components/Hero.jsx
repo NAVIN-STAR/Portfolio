@@ -19,7 +19,7 @@ const Hero = ({ scrollToSection }) => {
         </h1>
         
         <h2 className="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6 font-medium">
-          Associate Software Engineer (AI/ML)
+          Software Engineer (AI/ML)
         </h2>
 
         <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-8 leading-relaxed">
