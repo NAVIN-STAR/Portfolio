@@ -9,10 +9,10 @@ const Contact = () => {
           I'm always open to discussing new opportunities, interesting projects, or just having a conversation about AI/ML and software engineering.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="flex flex-col items-center gap-6 mb-12 max-w-md mx-auto">
           <a
             href="mailto:navinacharya2000@gmail.com"
-            className="flex items-center justify-center gap-3 p-6 bg-[#2A2A2B] rounded-lg border border-gray-700 hover:border-accent-light hover:shadow-md hover:-translate-y-1 transition-all group"
+            className="w-full flex items-center justify-center gap-3 p-6 bg-[#2A2A2B] rounded-lg border border-gray-700 hover:border-accent-light hover:shadow-md hover:-translate-y-1 transition-all group"
           >
             <Mail size={24} className="text-accent-light group-hover:scale-110 transition-transform" />
             <div className="text-left">
@@ -21,22 +21,13 @@ const Contact = () => {
             </div>
           </a>
 
-          <a
-            href="tel:+917019705917"
-            className="flex items-center justify-center gap-3 p-6 bg-[#2A2A2B] rounded-lg border border-gray-700 hover:border-accent-light hover:shadow-md hover:-translate-y-1 transition-all group"
-          >
-            <Phone size={24} className="text-accent-light group-hover:scale-110 transition-transform" />
-            <div className="text-left">
-              <div className="text-sm text-gray-400">Phone</div>
-              <div className="text-white font-medium">+91 7019705917</div>
-            </div>
-          </a>
+          
 
           <a
             href="https://www.linkedin.com/in/nabin-acharya-51755b202/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 p-6 bg-[#2A2A2B] rounded-lg border border-gray-700 hover:border-accent-light hover:shadow-md hover:-translate-y-1 transition-all group"
+            className="w-full flex items-center justify-center gap-3 p-6 bg-[#2A2A2B] rounded-lg border border-gray-700 hover:border-accent-light hover:shadow-md hover:-translate-y-1 transition-all group"
           >
             <Linkedin size={24} className="text-accent-light group-hover:scale-110 transition-transform" />
             <div className="text-left">
@@ -44,12 +35,12 @@ const Contact = () => {
               <div className="text-white font-medium">Connect with me</div>
             </div>
           </a>
-
+          
           <a
             href="https://github.com/NAVIN-STAR"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 p-6 bg-[#2A2A2B] rounded-lg border border-gray-700 hover:border-accent-light hover:shadow-md hover:-translate-y-1 transition-all group"
+            className="w-full flex items-center justify-center gap-3 p-6 bg-[#2A2A2B] rounded-lg border border-gray-700 hover:border-accent-light hover:shadow-md hover:-translate-y-1 transition-all group"
           >
             <Github size={24} className="text-accent-light group-hover:scale-110 transition-transform" />
             <div className="text-left">
