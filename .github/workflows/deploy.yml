@@ -1,17 +1,16 @@
-name: Build and Deploy to GitHub Pages
+name: Build and Deploy Portfolio to Homelab
 
 on:
   push:
-    branches: [ main ]
-
-permissions:
-  contents: write
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -25,8 +24,30 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to GitHub Pages (push to gh-pages)
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+      - name: Install cloudflared
+        run: |
+          wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+          chmod +x cloudflared-linux-amd64
+          sudo mv cloudflared-linux-amd64 /usr/local/bin/cloudflared
+
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+      - name: Configure SSH
+        run: |
+          cat > ~/.ssh/config <<EOF
+          Host ssh.nabinlabs.in
+            User ${{ secrets.SERVER_USER }}
+            IdentityFile ~/.ssh/id_ed25519
+            ProxyCommand cloudflared access ssh --hostname %h --id ${{ secrets.CF_ACCESS_CLIENT_ID }} --secret ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+          EOF
+
+      - name: Deploy Portfolio via Script
+        env:
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+        run: |
+          chmod +x ./deploy.sh
+          ./deploy.sh $SERVER_USER
