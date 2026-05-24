@@ -4,6 +4,7 @@ const About = () => {
       <div className="max-w-4xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">About Me</h2>
         <div className="space-y-4 text-lg text-gray-300 leading-relaxed">
+          <p>Testing CI/CD pipeline</p>
           <p>
             I'm a software engineer specializing in AI/ML, with a strong foundation in building production-grade 
             machine learning systems and full-stack applications. My work focuses on creating scalable solutions 
