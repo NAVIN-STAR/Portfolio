@@ -16,12 +16,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: "18"
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build Portfolio
         run: npm run build
 
       - name: Install cloudflared
@@ -42,13 +42,35 @@ jobs:
           Host ssh.nabinlabs.in
             User ${{ secrets.SERVER_USER }}
             IdentityFile ~/.ssh/id_ed25519
-            ProxyCommand cloudflared access ssh --hostname %h --id ${{ secrets.CF_ACCESS_CLIENT_ID }} --secret ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+            ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h
+            StrictHostKeyChecking no
           EOF
-      
 
-      - name: Deploy Portfolio via Script
-        env:
-          SERVER_USER: ${{ secrets.SERVER_USER }}
+      - name: Deploy Portfolio
         run: |
-          chmod +x ./deploy.sh
-          ./deploy.sh $SERVER_USER
+
+          echo "🧹 Preparing deployment directories..."
+
+          ssh ssh.nabinlabs.in "
+            mkdir -p /opt/apps/Portfolio &&
+            rm -rf /opt/apps/Portfolio/dist_old
+          "
+
+          echo "🚀 Uploading new build..."
+
+          scp -r ./dist \
+            ssh.nabinlabs.in:/opt/apps/Portfolio/dist_new
+
+          echo "🔄 Swapping builds atomically..."
+
+          ssh ssh.nabinlabs.in "
+            if [ -d /opt/apps/Portfolio/dist ]; then
+              mv /opt/apps/Portfolio/dist /opt/apps/Portfolio/dist_old
+            fi
+
+            mv /opt/apps/Portfolio/dist_new /opt/apps/Portfolio/dist
+
+            rm -rf /opt/apps/Portfolio/dist_old
+          "
+
+          echo "🎉 Portfolio deployed successfully!"
