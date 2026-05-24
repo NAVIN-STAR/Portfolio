@@ -47,7 +47,14 @@ jobs:
           EOF
 
       - name: Deploy Portfolio
+        env:
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+
         run: |
+
+          export TUNNEL_SERVICE_TOKEN_ID=$CF_ACCESS_CLIENT_ID
+          export TUNNEL_SERVICE_TOKEN_SECRET=$CF_ACCESS_CLIENT_SECRET
 
           echo "🧹 Preparing deployment directories..."
 
@@ -56,12 +63,12 @@ jobs:
             rm -rf /opt/apps/Portfolio/dist_old
           "
 
-          echo "🚀 Uploading new build..."
+          echo "🚀 Uploading build..."
 
           scp -r ./dist \
             ssh.nabinlabs.in:/opt/apps/Portfolio/dist_new
 
-          echo "🔄 Swapping builds atomically..."
+          echo "🔄 Swapping builds..."
 
           ssh ssh.nabinlabs.in "
             if [ -d /opt/apps/Portfolio/dist ]; then
@@ -73,4 +80,4 @@ jobs:
             rm -rf /opt/apps/Portfolio/dist_old
           "
 
-          echo "🎉 Portfolio deployed successfully!"
+          echo "🎉 Deployment successful!"
