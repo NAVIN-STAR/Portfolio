@@ -25,58 +25,58 @@ const Achievements = () => {
   ]
 
   const impactMetrics = [
-    { metric: '40%', label: 'Reduced Inference Latency' },
-    { metric: '30%', label: 'Reduced Food Wastage' },
-    { metric: '40%', label: 'Cut Data Engineering Overhead' },
-    { metric: '78%', label: 'Model Accuracy (Food Segmentation)' },
-    { metric: '99.9%', label: 'Backend Data Reliability' },
-    { metric: '60%', label: 'Faster Response Generation' },
+    { metric: '81% → 96%', label: 'RAG Ingestion Accuracy' },
+    { metric: '64%', label: 'RAG Latency Reduction' },
+    { metric: '35%', label: 'Onboarding Acceleration' },
+    { metric: '94%', label: 'Factual Accuracy' },
+    { metric: '5000+', label: 'Daily Requests (280ms p95)' },
+    { metric: '0.9632', label: 'Model R² Score' },
   ]
 
   return (
-    <section id="achievements" className="section-padding bg-[#1E1E1F]">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">Achievements & Impact</h2>
+    <section id="achievements" className="section-padding bg-dark-bg">
+      <div className="max-w-6xl mx-auto section-glass">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Achievements & Impact</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
           {achievements.map((achievement, index) => (
             <div
               key={index}
-              className="bg-[#2A2A2B] rounded-lg p-6 border border-gray-700 hover:-translate-y-1 hover:shadow-md hover:border-accent-light/40 transition-all"
+              className="glass-card border-white/25"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="text-gray-300">{achievement.icon}</div>
-                <h3 className="text-lg font-bold text-white">{achievement.title}</h3>
+                <div className="text-text-primary">{achievement.icon}</div>
+                <h3 className="text-lg font-bold text-text-primary">{achievement.title}</h3>
               </div>
               {achievement.description && (
-                <p className="text-gray-300 mb-2 leading-relaxed">{achievement.description}</p>
+                <p className="text-slate-300 mb-2 leading-relaxed">{achievement.description}</p>
               )}
               {achievement.items && (
                 <ul className="space-y-2">
                   {achievement.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="text-gray-300 text-sm leading-relaxed">
+                    <li key={itemIndex} className="text-slate-300 text-sm leading-relaxed">
                       • {item}
                     </li>
                   ))}
                 </ul>
               )}
               {achievement.details && (
-                <div className="mt-3 pt-3 border-t border-gray-700">
-                  <p className="text-sm text-gray-400 mb-1">{achievement.details}</p>
-                  <p className="text-sm text-gray-400 italic">{achievement.authors}</p>
+                <div className="mt-3 pt-3 border-t border-white/10">
+                  <p className="text-sm text-slate-400 mb-1">{achievement.details}</p>
+                  <p className="text-sm text-slate-400 italic">{achievement.authors}</p>
                 </div>
               )}
             </div>
           ))}
         </div>
 
-        <div className="bg-[#2A2A2B] hover:border-accent-light/40 hover:-translate-y-1 rounded-lg p-8 border border-gray-700 shadow-lg transistion-all duration-300">
+        <div className="glass-card border-white/25 p-8">
           <h3 className="text-2xl font-bold text-white mb-6 text-center">Key Impact Metrics</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {impactMetrics.map((metric, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl font-bold text-blue-300 mb-1">{metric.metric}</div>
-                <div className="text-sm text-gray-300">{metric.label}</div>
+                <div className="text-3xl font-bold text-text-primary mb-1">{metric.metric}</div>
+                <div className="text-sm text-text-secondary">{metric.label}</div>
               </div>
             ))}
           </div>

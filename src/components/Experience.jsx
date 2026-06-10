@@ -8,13 +8,15 @@ const Experience = () => {
       location: 'Bangalore',
       duration: 'Sept 2024 – Present',
       achievements: [
-        'Built IdeaFlux, a Local LLM and Semantic Search based duplicate detection system using FAISS; improved vector retrieval accuracy and reduced inference latency by 40% through index optimization and query caching.',
-        'Designed and deployed scalable REST APIs using FastAPI and Flask to serve ML models; ensured 99.9% backend data reliability across PostgreSQL and MSSQL systems.',
-        'Developed ML-driven demand forecasting using Pandas, NumPy, Scikit-learn, reducing food wastage by approximately 30% across internal cafeteria operations.',
-        'Automated ML preprocessing and validation pipelines to eliminate manual checks, achieving a 40% cut in data engineering overhead.',
-        'Contributed Full-Stack features with Tailwind CSS & JavaScript, improving internal developer onboarding and UI workflows by 30%.',
+        'Improved RAG ingestion accuracy from 81% to 96% by building a multi-format parsing pipeline (PDF, MD, DOCX) with SentenceTransformers, achieving 75 chunks/sec throughput and enabling reliable enterprise document Q&A at scale.',
+        'Reduced end-to-end RAG retrieval latency by 64% (from 125ms to 45ms) and improved retrieval precision from 71% to 93% by engineering a hybrid dense-sparse search system with Cross-Encoder reranking, directly improving answer quality for 5,000+ daily enterprise users.',
+        'Architected a context-aware RAG orchestration layer reducing false-positives by 28% with 94% factual accuracy using a 4-criteria scoring framework, Jinja2, and JSON output validation.',
+        'Built a high-throughput REST API processing 5,000+ daily requests under 280ms p95 latency via FastAPI, Python AsyncIO, and ThreadPoolExecutor; automated deployment with CI/CD.',
+        'Accelerated new engineer onboarding by 35% (from 14 to 9 days) by redesigning 9 tightly-coupled service layers into a dependency-injected hexagonal architecture, enabling seamless LLM and vector DB provider swaps.',
+        'Engineered an ETL feature pipeline using Pandas and NumPy to process 11,000+ multi-location corporate records and extract 31 time-series operational features, directly feeding the downstream demand forecasting model.',
+        'Deployed a Random Forest regression model (R²: 0.9632) that fully automated demand forecasting inference across 11,000+ corporate locations, eliminating all manual intervention in the zero-touch inference pipeline.',
       ],
-      tech: ['FastAPI', 'Flask', 'LangChain', 'PostgreSQL', 'MSSQL', 'Swagger (OpenAPI)', 'Linux', 'Git', 'JWT Auth'],
+      tech: ['FastAPI', 'Python AsyncIO', 'LangChain', 'SentenceTransformers', 'PostgreSQL', 'ChromaDB', 'AWS (EC2, S3)', 'Docker', 'CI/CD', 'Git', 'Pandas', 'NumPy', 'Scikit-learn'],
     },
     {
       company: 'Samsung R&D Institute',
@@ -31,22 +33,22 @@ const Experience = () => {
   ]
 
   return (
-    <section id="experience" className="section-padding bg-[#1E1E1F]">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">Experience</h2>
+    <section id="experience" className="section-padding bg-dark-bg">
+      <div className="max-w-5xl mx-auto section-glass">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Experience</h2>
         
-        <div className="space-y-8">
+        <div className="space-y-6">
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className="bg-[#2A2A2B] rounded-lg p-6 md:p-8 shadow-sm border border-gray-700 hover:shadow-lg hover:border-accent-light/30 hover:-translate-y-1 transition-all duration-300"
+              className="glass-card border-white/25"
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                 <div>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-1">{exp.role}</h3>
-                  <p className="text-lg font-semibold bg-gradient-to-r from-accent-light to-accent bg-clip-text  mb-2 text-gray-400">{exp.company}</p>
+                  <h3 className="text-xl md:text-2xl font-bold text-text-primary mb-1">{exp.role}</h3>
+                  <p className="text-lg font-semibold text-text-secondary mb-2">{exp.company}</p>
                 </div>
-                <div className="flex flex-col md:items-end text-sm text-gray-400 mt-2 md:mt-0">
+                <div className="flex flex-col md:items-end text-sm text-slate-400 mt-2 md:mt-0">
                   <div className="flex items-center gap-1 mb-1">
                     <Calendar size={14} />
                     <span>{exp.duration}</span>
@@ -60,18 +62,18 @@ const Experience = () => {
 
               <ul className="space-y-3 mb-6">
                 {exp.achievements.map((achievement, achIndex) => (
-                  <li key={achIndex} className="text-gray-300 leading-relaxed flex items-start">
-                    <span className="text-gray-400 mr-2 mt-1.5 font-bold">•</span>
+                  <li key={achIndex} className="text-text-secondary leading-relaxed flex items-start">
+                    <span className="text-text-primary mr-2 mt-1.5 font-bold">•</span>
                     <span>{achievement}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-700">
+              <div className="flex flex-wrap gap-2 pt-4 border-t border-white/10">
                 {exp.tech.map((tech, techIndex) => (
                   <span
                     key={techIndex}
-                    className="px-3 py-1 bg-[#1E1E1F] text-gray-300 rounded-full text-xs font-medium border border-gray-400/40"
+                    className="px-3 py-1 bg-[rgba(24,24,27,0.5)] text-text-primary rounded-full text-xs font-medium border border-core-border"
                   >
                     {tech}
                   </span>

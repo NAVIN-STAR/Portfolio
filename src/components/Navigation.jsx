@@ -19,26 +19,25 @@ const Navigation = ({ activeSection, scrollToSection }) => {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1E1E1F]/95 backdrop-blur-sm border-b border-gray-700 shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 glass-panel-strong border-b border-core-border backdrop-blur-xxl">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         <div className="flex items-center justify-between h-16">
           <button
             onClick={() => scrollToSection('hero')}
-            className="text-xl font-bold text-white hover:text-accent-light transition-colors"
+            className="text-sm font-mono text-text-primary tracking-[0.18em] uppercase hover:text-text-accent transition-colors"
           >
-            Nabin Acharya
+            Home
           </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center gap-8 text-sm font-mono text-text-secondary">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`text-sm font-medium transition-colors ${
+                className={`transition-colors ${
                   activeSection === item.id
-                    ? 'text-accent-light border-b-2 border-accent-light'
-                    : 'text-gray-300 hover:text-accent-light'
+                    ? 'text-text-primary border-b border-core-borderHighlight pb-1'
+                    : 'hover:text-text-primary'
                 }`}
               >
                 {item.label}
@@ -46,28 +45,26 @@ const Navigation = ({ activeSection, scrollToSection }) => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-300 hover:text-white"
+            className="md:hidden text-text-secondary hover:text-text-primary transition-colors"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden border-t border-gray-700 bg-[#1E1E1F]">
-          <div className="px-6 py-4 space-y-3">
+        <div className="md:hidden border-t border-core-border bg-[rgba(24,24,27,0.5)] backdrop-blur-xxl">
+          <div className="px-6 py-4 space-y-3 text-sm font-mono text-text-secondary">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`block w-full text-left py-2 text-sm font-medium transition-colors ${
+                className={`block w-full text-left py-2 transition-colors ${
                   activeSection === item.id
-                    ? 'text-accent-light'
-                    : 'text-gray-300 hover:text-accent-light'
+                    ? 'text-text-primary'
+                    : 'hover:text-text-primary'
                 }`}
               >
                 {item.label}

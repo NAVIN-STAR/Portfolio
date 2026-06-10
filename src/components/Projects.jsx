@@ -3,46 +3,57 @@ import { Github } from 'lucide-react'
 const Projects = () => {
   const projects = [
     {
-      title: 'ChatWithPDF',
-      description: 'A web application that enables users to upload PDF, TXT, and Word documents and chat with their content using Retrieval-Augmented Generation (RAG). Features document chunking, embedding-based similarity search with FAISS vector store, and contextual LLM responses. Built with FastAPI backend for asynchronous processing and a stateless chat interface.',
-      techStack: ['FastAPI', 'Python', 'FAISS', 'PostgreSQL', 'Asyncio', 'JavaScript', 'Tailwind CSS', 'RAG'],
-      githubUrl: 'https://github.com/NAVIN-STAR/ChatWithPDF',
+      title: 'Document Chat App',
+      subtitle: 'FastAPI, PostgreSQL, ChromaDB, LangChain, JWT Auth',
+      linkLabel: 'Project Link',
+      linkUrl: 'https://github.com/NAVIN-STAR/ChatWithPDF',
+      points: [
+        'Implemented a GenAI-powered RAG backend supporting 5+ document formats (PDF, DOCX, TXT, etc.) with contextual chunking and semantic search using LangChain, ChromaDB, FAISS.',
+        'Achieved 60% faster response generation with asynchronous FastAPI endpoints and optimized chunk-based vector indexing, secured with JWT access + refresh tokens.',
+        'Delivered a full-stack conversational interface using HTML, JavaScript, Tailwind CSS with persistent chat history, ensuring scalable document-aware interactions.',
+      ],
+      tech: ['FastAPI', 'LangChain', 'ChromaDB', 'FAISS', 'PostgreSQL', 'JWT Auth', 'Tailwind', 'Async APIs'],
     },
   ]
 
   return (
-    <section id="projects" className="section-padding bg-[#1E1E1F]">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">Projects</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <section id="projects" className="section-padding bg-dark-bg">
+      <div className="max-w-5xl mx-auto section-glass">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Projects</h2>
+
+        <div className="space-y-6">
           {projects.map((project, index) => (
-            <div
-              key={index}
-              className="bg-[#2A2A2B] border border-gray-700 rounded-lg p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col hover:border-accent-light/50"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <h3 className="text-xl font-bold text-white">{project.title}</h3>
+            <div key={index} className="glass-card border-white/25">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold text-text-primary mb-1">{project.title}</h3>
+                  <p className="text-lg font-semibold text-text-secondary mb-2">{project.subtitle}</p>
+                </div>
                 <a
-                  href={project.githubUrl}
+                  href={project.linkUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-accent-light transition-colors p-2 hover:bg-gradient-to-br hover:from-accent/20 hover:to-accent-light/20 rounded-lg"
-                  aria-label="View on GitHub"
+                  className="text-sm font-mono uppercase tracking-[0.2em] text-text-primary hover:text-white transition-colors"
                 >
-                  <Github size={20} />
+                  {project.linkLabel}
                 </a>
               </div>
-              
-              <p className="text-gray-300 mb-4 flex-grow leading-relaxed">
-                {project.description}
-              </p>
-              
-              <div className="flex flex-wrap gap-2 mt-4">
-                {project.techStack.map((tech, techIndex) => (
+
+              <ul className="space-y-3 mb-6">
+                {project.points.map((point, pointIndex) => (
+                  <li key={pointIndex} className="text-text-secondary leading-relaxed flex items-start">
+                    <span className="text-text-primary mr-2 mt-1.5 font-bold">•</span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                {project.tech.map((tech, techIndex) => (
                   <span
                     key={techIndex}
-                    className="px-3 py-1 bg-[#1E1E1F] text-gray-300 rounded-full text-xs font-medium border border-gray-400/40"                  >
+                    className="px-3 py-1 bg-[rgba(24,24,27,0.5)] text-text-primary rounded-full text-xs font-medium border border-core-border"
+                  >
                     {tech}
                   </span>
                 ))}

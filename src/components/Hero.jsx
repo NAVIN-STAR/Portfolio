@@ -1,53 +1,27 @@
-import { ChevronDown } from 'lucide-react'
 import profilePhoto from '../images/profile_picture (2).jpg'
 
 const Hero = ({ scrollToSection }) => {
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center section-padding pt-24 bg-[#1E1E1F] text-white">
-      <div className="max-w-4xl mx-auto text-center">
-        {/* Profile Photo */}
-        <div className="mb-8 flex justify-center">
-          <img 
-            src={profilePhoto} 
-            alt="Nabin Acharya" 
-            className="w-28 h-28 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full object-cover shadow-xl ring-4 ring-accent-light/20"
-          />
+    <section id="hero" className="section-padding bg-core-bg text-text-primary section-grid overflow-hidden">
+      <div className="max-w-7xl mx-auto grid gap-8 lg:grid-cols-[1.3fr_0.9fr] items-start">
+    
+
+        <div className="glass-panel p-8 lg:p-10">
+          <div className="flex flex-col gap-5">
+            <div className="text-xs uppercase font-mono tracking-[0.3em] text-text-secondary">
+              AI systems engineering
+            </div>
+
+            <div className="flex items-center gap-4 border-t border-core-border pt-6">
+              <img src={profilePhoto} alt="Profile" className="w-16 h-16 rounded-3xl border border-core-border" />
+              <div>
+                <p className="text-sm uppercase tracking-[0.2em] text-text-secondary">Nabin Acharya</p>
+                <p className="text-lg font-semibold text-text-primary">AI/ML Engineer</p>
+                
+              </div>
+            </div>
+          </div>
         </div>
-
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-          Nabin Acharya
-        </h1>
-        
-        <h2 className="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6 font-medium">
-          Software Engineer (AI/ML)
-        </h2>
-
-        <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-8 leading-relaxed">
-          Building scalable ML systems and AI-powered solutions. Passionate about leveraging deep learning, 
-          LLMs, and vector databases to solve complex engineering challenges.
-        </p>
-
-        <div className="flex justify-center gap-4 mb-12">
-          <a
-            href="mailto:navinacharya2000@gmail.com"
-            className="px-6 py-3 border-2 border-accent-light text-white rounded-lg font-medium hover:border-accent-light hover:bg-accent-light/10 transition-all"
-          >
-            Get In Touch
-          </a>
-          <button
-            onClick={() => scrollToSection('projects')}
-            className="px-6 py-3 border-2 border-accent-light text-white rounded-lg font-medium hover:border-accent-light hover:bg-accent-light/10 transition-all"
-          >
-            View Work
-          </button>
-        </div>
-
-        <button
-          onClick={() => scrollToSection('about')}
-          className="animate-bounce text-accent-light hover:text-accent-lighter transition-colors"
-        >
-          <ChevronDown size={32} />
-        </button>
       </div>
     </section>
   )
