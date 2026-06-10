@@ -16,19 +16,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: '18'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build Portfolio
+      - name: Build
         run: npm run build
 
       - name: Install cloudflared
         run: |
-          wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
-          chmod +x cloudflared
-          sudo mv cloudflared /usr/local/bin/cloudflared
+          wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+          chmod +x cloudflared-linux-amd64
+          sudo mv cloudflared-linux-amd64 /usr/local/bin/cloudflared
 
       - name: Setup SSH Key
         run: |
@@ -38,31 +38,18 @@ jobs:
 
       - name: Configure SSH
         run: |
-          mkdir -p ~/.ssh
-
           cat > ~/.ssh/config <<EOF
           Host ssh.nabinlabs.in
             User ${{ secrets.SERVER_USER }}
             IdentityFile ~/.ssh/id_ed25519
-            ProxyCommand cloudflared access ssh --hostname %h --id ${{ secrets.CF_ACCESS_CLIENT_ID }} --secret ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+            ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h
             StrictHostKeyChecking no
-            UserKnownHostsFile /dev/null
           EOF
+      
 
-      - name: Deploy Portfolio
+      - name: Deploy Portfolio via Script
+        env:
+          SERVER_USER: ${{ secrets.SERVER_USER }}
         run: |
-          echo "🧹 Preparing deployment directories..."
-          ssh ssh.nabinlabs.in "mkdir -p /opt/apps/Portfolio && rm -rf /opt/apps/Portfolio/dist_old"
-
-          echo "🚀 Uploading build..."
-          scp -F ~/.ssh/config -r ./dist ssh.nabinlabs.in:/opt/apps/Portfolio/dist_new
-
-          echo "🔄 Swapping builds..."
-          ssh ssh.nabinlabs.in "
-            if [ -d /opt/apps/Portfolio/dist ]; then
-              mv /opt/apps/Portfolio/dist /opt/apps/Portfolio/dist_old
-            fi
-            mv /opt/apps/Portfolio/dist_new /opt/apps/Portfolio/dist
-            rm -rf /opt/apps/Portfolio/dist_old
-          "
-          echo "🎉 Deployment successful!"
+          chmod +x ./deploy.sh
+          ./deploy.sh $SERVER_USER
