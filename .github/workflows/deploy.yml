@@ -26,9 +26,9 @@ jobs:
 
       - name: Install cloudflared
         run: |
-          wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
-          chmod +x cloudflared-linux-amd64
-          sudo mv cloudflared-linux-amd64 /usr/local/bin/cloudflared
+          wget https://github.com/cloudflare/cloudflare-tunnel/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
+          chmod +x cloudflared
+          sudo mv cloudflared /usr/local/bin/cloudflared
 
       - name: Setup SSH Key
         run: |
@@ -43,43 +43,25 @@ jobs:
           Host ssh.nabinlabs.in
             User ${{ secrets.SERVER_USER }}
             IdentityFile ~/.ssh/id_ed25519
-            ProxyCommand cloudflared access ssh --hostname %h --id ${{ secrets.CF_ACCESS_CLIENT_ID }} --secret ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+            ProxyCommand cloudflared access ssh --hostname %h:%p --id ${{ secrets.CF_ACCESS_CLIENT_ID }} --secret ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
             StrictHostKeyChecking no
             UserKnownHostsFile /dev/null
           EOF
 
       - name: Deploy Portfolio
-        env:
-          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
-          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
-
         run: |
-
-          export TUNNEL_SERVICE_TOKEN_ID=$CF_ACCESS_CLIENT_ID
-          export TUNNEL_SERVICE_TOKEN_SECRET=$CF_ACCESS_CLIENT_SECRET
-
           echo "🧹 Preparing deployment directories..."
-
-          ssh ssh.nabinlabs.in "
-            mkdir -p /opt/apps/Portfolio &&
-            rm -rf /opt/apps/Portfolio/dist_old
-          "
+          ssh ssh.nabinlabs.in "mkdir -p /opt/apps/Portfolio && rm -rf /opt/apps/Portfolio/dist_old"
 
           echo "🚀 Uploading build..."
-
-          scp -r ./dist \
-            ssh.nabinlabs.in:/opt/apps/Portfolio/dist_new
+          scp -F ~/.ssh/config -r ./dist ssh.nabinlabs.in:/opt/apps/Portfolio/dist_new
 
           echo "🔄 Swapping builds..."
-
           ssh ssh.nabinlabs.in "
             if [ -d /opt/apps/Portfolio/dist ]; then
               mv /opt/apps/Portfolio/dist /opt/apps/Portfolio/dist_old
             fi
-
             mv /opt/apps/Portfolio/dist_new /opt/apps/Portfolio/dist
-
             rm -rf /opt/apps/Portfolio/dist_old
           "
-
           echo "🎉 Deployment successful!"
