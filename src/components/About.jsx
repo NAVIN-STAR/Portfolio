@@ -1,7 +1,7 @@
 const About = () => {
   return (
     <section id="about" className="section-padding bg-dark-bg">
-      <div className="max-w-4xl mx-auto section-glass">
+      <div className="max-w-5xl mx-auto section-glass">
           <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-6 text-center">About Me</h2>
           <div className="space-y-4 text-lg text-text-secondary leading-relaxed max-w-3xl mx-auto">
           <p>

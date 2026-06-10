@@ -49,6 +49,10 @@
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
   }
 
+  .section-glass {
+    @apply glass-panel p-8 md:p-10;
+  }
+
   .glass-panel-strong {
     @apply glass-panel;
     border: 1px solid rgba(255,255,255,0.08);

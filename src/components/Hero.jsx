@@ -3,9 +3,7 @@ import profilePhoto from '../images/profile_picture (2).jpg'
 const Hero = ({ scrollToSection }) => {
   return (
     <section id="hero" className="section-padding bg-core-bg text-text-primary section-grid overflow-hidden">
-      <div className="max-w-7xl mx-auto grid gap-8 lg:grid-cols-[1.3fr_0.9fr] items-start">
-    
-
+      <div className="max-w-4xl mx-auto">
         <div className="glass-panel p-8 lg:p-10">
           <div className="flex flex-col gap-5">
             <div className="text-xs uppercase font-mono tracking-[0.3em] text-text-secondary">
