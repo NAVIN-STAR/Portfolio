@@ -2,54 +2,83 @@ import { Mail, Linkedin, Github, Phone, MapPin } from 'lucide-react'
 
 const Contact = () => {
   return (
-    <section id="contact" className="section-padding bg-dark-bg">
-      <div className="max-w-4xl mx-auto text-center section-glass">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Get In Touch</h2>
+    <section id="contact" className="section-padding bg-transparent relative overflow-hidden">
+      {/* Subtle gradient background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse at 50% 100%, rgba(34,211,238,0.04) 0%, transparent 60%)',
+          }}
+        />
+      </div>
+
+      <div className="max-w-4xl mx-auto text-center section-glass reveal relative z-10">
+        <h2 className="text-3xl md:text-4xl font-bold section-heading mb-4">Get In Touch</h2>
         <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
           I'm always open to discussing new opportunities, interesting projects, or just having a conversation about AI/ML and software engineering.
         </p>
 
-        <div className="flex flex-col items-center gap-5 mb-8 max-w-md mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 max-w-lg mx-auto reveal-stagger">
           <a
             href="mailto:navinacharya2000@gmail.com"
-            className="w-full glass-card flex items-center justify-center gap-3 border-white/25 group"
+            className="glass-card flex items-center gap-3 border-white/5 group"
           >
-            <Mail size={24} className="text-text-primary group-hover:scale-110 transition-transform" />
-            <div className="text-left">
-              <div className="text-sm text-slate-400">Email</div>
-              <div className="text-white font-medium">navinacharya2000@gmail.com</div>
+            <div className="icon-glow shrink-0 group-hover:shadow-glow-sm transition-shadow duration-300">
+              <Mail size={16} />
+            </div>
+            <div className="text-left min-w-0">
+              <div className="text-xs text-slate-400">Email</div>
+              <div className="text-white font-medium text-sm truncate">navinacharya2000@gmail.com</div>
             </div>
           </a>
 
           <a
-            href="https://www.linkedin.com/in/nabin-acharya-51755b202/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full glass-card flex items-center justify-center gap-3 border-white/25 group"
+            href="tel:+917019705917"
+            className="glass-card flex items-center gap-3 border-white/5 group"
           >
-            <Linkedin size={24} className="text-text-primary group-hover:scale-110 transition-transform" />
+            <div className="icon-glow shrink-0 group-hover:shadow-glow-sm transition-shadow duration-300">
+              <Phone size={16} />
+            </div>
             <div className="text-left">
-              <div className="text-sm text-slate-400">LinkedIn</div>
-              <div className="text-white font-medium">Connect with me</div>
+              <div className="text-xs text-slate-400">Phone</div>
+              <div className="text-white font-medium text-sm">+91 7019705917</div>
             </div>
           </a>
-          
+
           <a
-            href="https://github.com/NAVIN-STAR"
+            href="https://linkedin.com/in/nabin-acharya"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full glass-card flex items-center justify-center gap-3 border-white/25 group"
+            className="glass-card flex items-center gap-3 border-white/5 group"
           >
-            <Github size={24} className="text-text-primary group-hover:scale-110 transition-transform" />
-            <div className="text-left">
-              <div className="text-sm text-slate-400">GitHub</div>
-              <div className="text-white font-medium">View my work</div>
+            <div className="icon-glow shrink-0 group-hover:shadow-glow-sm transition-shadow duration-300">
+              <Linkedin size={16} />
+            </div>
+            <div className="text-left min-w-0">
+              <div className="text-xs text-slate-400">LinkedIn</div>
+              <div className="text-white font-medium text-sm truncate">linkedin.com/in/nabin-acharya</div>
+            </div>
+          </a>
+
+          <a
+            href="https://github.com/navin-star"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-card flex items-center gap-3 border-white/5 group"
+          >
+            <div className="icon-glow shrink-0 group-hover:shadow-glow-sm transition-shadow duration-300">
+              <Github size={16} />
+            </div>
+            <div className="text-left min-w-0">
+              <div className="text-xs text-slate-400">GitHub</div>
+              <div className="text-white font-medium text-sm truncate">github.com/navin-star</div>
             </div>
           </a>
         </div>
 
-        <div className="flex items-center justify-center gap-2 text-slate-400">
-          <MapPin size={18} />
+        <div className="flex items-center justify-center gap-2 text-slate-500 text-sm">
+          <MapPin size={16} />
           <span>Bangalore, India</span>
         </div>
       </div>
@@ -58,4 +87,3 @@ const Contact = () => {
 }
 
 export default Contact
-
